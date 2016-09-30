@@ -17,7 +17,7 @@ sys.path.append("../src")
 import cspad
 
 # Data files
-signal_filename  = "../data/hits/r0182_20141209_1845/cxic9714-r0182.cxi"
+signal_filename  = "../data/r0182_20141209_1845/cxic9714-r0182.cxi"
 back_sigma_filename  = "../analysis/detector/back/signal/bg_sigmamap_tmp.h5"
 front_sigma_filename = "../analysis/detector/front/signal/bg_sigmamap_tmp.h5"
 back_geometry_filename = "../analysis/detector/back/back_geometry.h5"
@@ -94,7 +94,7 @@ distance_front = 0.5
 scaling = distance_back / distance_front
 offset_x = 4
 offset_y = 12
-
+print back.shape, front.shape
 # Make a copy of the back/front detector
 assembled = np.copy(front)
 backtmp   = np.rot90(np.copy(back), k=2)

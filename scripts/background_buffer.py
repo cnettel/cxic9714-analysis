@@ -16,7 +16,7 @@ sys.path.append("../src")
 import cspad
 
 # Data files
-background_filenames  = ["../data/background/cxic9714-r0174.cxi", "../data/background/cxic9714-r0175.cxi"]
+background_filenames  = ["../background/cxic9714-r0174.cxi", "../background/cxic9714-r0175.cxi"]
 back_sigma_filename   = "../analysis/detector/back/signal/bg_sigmamap_tmp.h5"
 front_sigma_filename  = "../analysis/detector/front/signal/bg_sigmamap_tmp.h5"
 back_geometry_filename = "../analysis/detector/back/back_geometry.h5"
