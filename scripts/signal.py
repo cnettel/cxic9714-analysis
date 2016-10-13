@@ -96,8 +96,9 @@ offset_x = 4
 offset_y = 12
 print back.shape, front.shape
 # Make a copy of the back/front detector
-assembled = np.copy(front)
+assembled = np.copy(front).astype(np.float)
 backtmp   = np.rot90(np.copy(back), k=2)
+print "before: ", backtmp.sum() 
 
 # Make a copy of the back/front masks
 assembled_mask = np.copy(frontmask) & fmask & (cspad_front.sigma != -1)
@@ -107,7 +108,8 @@ backtmp_mask   = np.rot90(np.copy(backmask), k=2).astype(np.float)
 npixel = np.round((backtmp.shape[1]/scaling))
 zoomed = ndimage.zoom(backtmp, npixel/backtmp.shape[1] * 10., mode='nearest',order=0)
 binned = zoomed.reshape((npixel,10,npixel,10)).sum(axis=(1,3))
-backtmp = binned / scaling
+backtmp = binned / 100. * (scaling**2)
+print "after: ", backtmp.sum()
     
 # Rebin the back detector mask (Zooming out)
 npixel = np.round((backtmp_mask.shape[1]/scaling))
