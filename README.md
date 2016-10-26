@@ -1,51 +1,36 @@
-This is a repository providing data analysis tools used for the Flash X-ray Imaging (FXI) experiment performed 
-at the Linac Coherent Light Source (LCLS) which is described in 
+This repository provides a description of the data analysis tools used for a Flash X-ray Imaging (FXI) experiment which was performed at 
+the Linac Coherent Light Source (LCLS) and is described in 
 
-Daurer B.J., Larsson D.S.D., et al. Advances in imaging of small virus particles at an X-ray laser. Submitted.
+Daurer B.J., Larsson D.S.D., et al. Advances in imaging of small virus particles at an X-ray laser. Manuscript in preparation.
 
-Data collected in this experiment has been deposited on CXIDB [http://cxidb.org](http://cxidb.org) with ID XX and can be 
-downloaded from here: 
+The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with ID XX and can be downloaded from here: 
+[http://cxidb.org/id-XX.html](http://cxidb.org/id-XX.html)
 
-# Requirements
-The data (CXI files) needs to be downloaded from the link above and a soft link has to be created inside this repository
+List of available files:
+------------------------
 
-```bash
-ln -s /path/to/downloaded/data/ data
-```
+File name                                         | Name | Description
+------------------------------------------------- | ---- | ------------------------------------------------------------------
+[](cxidb.org/data/XX/cxidb_XX_hits.tar.gz)        | HITS | Diffraction data processed with *Cheetah* and saved as CXI files.
+[](cxidb.org/data/XX/cxidb_XX_background.tar.gz() | BKGR | Background data processed with *Cheetah* and saved as CXI files.
+[](cxidb.org/data/XX/cxidb_XX_metadata.tar.gz()   | META | Auxiliary files used in *Cheetah* and/or other processing scripts.
 
-pointing to a directory containing all CXI files.
+Inspecting CXI files
+--------------------
+The easiest way to inspect CXI files is to use the viewing tool Owl 
+([http://github.com/FXIhub/owl](http://github.com/FXIhub/owl)), but any inspection tool for HDF5 files can be used.
 
-For the scripts to run properly, the following has to be installed
+Requirements
+------------
+In order to be able to run all the provided scripts and jupyter notebooks, the following has to be installed:
+
 * python 2.7
-* libspimage (http://github.com/FilipeMaia/libspimage)
-* matplotlib
 * numpy
 * scipy
+* h5py
+* matplotlib
+* jupyter-notebook
 
-# Viewing the data
-The easiest way to look at the data is to use the viewing tool Owl ([http://github.com/FilipeMaia/owl](http://github.com/FilipeMaia/owl)) 
-which allows for detailed inspection of files in the CXI format.
-
-Another option is to inspect data directly in an IPython session:
-
-```ipython
-import h5py
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Loading 9 strongest patterns (back detector)
-cxifile = 'data/cxic9714-r0163.cxi'
-with h5py.File(cxifile, 'r') as f:
-    hitscores = f['cheetah/event_data/peakNpix'][:]
-    strongest10 = hitscores > np.sort(hitscores)[-11]
-    back_detector = f['entry_1/image_1/data'][strongest10,:,:]
-
-# Plotting
-fig, arr = plt.subplots(3,3)
-for i in range(9):
-    im = arr[i/3,i%3].imshow(back_detector[i],vmin=15, vmax=1000)    
-plt.show()
-```
-
-The most interesting data entries are summarized in the following table
+* libspimage (http://github.com/FXIhub/libspimage)
+* condor (http://github.com/FXIhub/condor)
 
