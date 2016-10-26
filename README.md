@@ -7,11 +7,11 @@ The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with
 http://cxidb.org/id-XX.html
 
 ### List of available files: ###
-File name                                           | Name | Description
---------------------------------------------------- | ---- | ------------------------------------------------------------------
-http://cxidb.org/data/XX/cxidb_XX_hits.tar.gz       | HITS | Diffraction hits saved as CXI files.
-http://cxidb.org/data/XX/cxidb_XX_background.tar.gz | BKGR | Diffraction background saved as CXI files.
-http://cxidb.org/data/XX/cxidb_XX_metadata.tar.gz   | META | Auxiliary files.
+File name                                           | Name     | Description
+--------------------------------------------------- | -------- | ----------------------------------
+http://cxidb.org/data/XX/cxidb_XX_hits.tar.gz       | **HITS** | Diffraction hits saved as CXI files.
+http://cxidb.org/data/XX/cxidb_XX_background.tar.gz | **BKGR** | Diffraction background saved as CXI files.
+http://cxidb.org/data/XX/cxidb_XX_metadata.tar.gz   | **META** | Auxiliary files.
 
 ### Inspecting CXI files ###
 The easiest way to inspect CXI files is to use the viewing tool Owl 
@@ -32,3 +32,10 @@ In order to be able to run all the provided scripts and jupyter notebooks, the f
 ### Contact information
 For questions about this repository and the data analysis tools, feel free to contact the author: 
 * Benedikt Daurer (benedikt@xray.bmc.uu.se)
+
+________________________________________________
+
+## Step-by-step instructions on data analysis ##
+The following sections provide a detailed description of the individual data analysis steps performed for this work. The names **HITS**, **BKGR** and **META** are used as reference to the data files which have been made available. The entire processing pipeline for this experiment looks like this:
+
+
