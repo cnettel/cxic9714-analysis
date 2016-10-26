@@ -4,21 +4,21 @@ the Linac Coherent Light Source (LCLS) and is described in
 Daurer B.J., Larsson D.S.D., et al. Advances in imaging of small virus particles at an X-ray laser. Manuscript in preparation.
 
 The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with ID XX and can be downloaded from here: 
-[http://cxidb.org/id-XX.html](http://cxidb.org/id-XX.html)
+http://cxidb.org/id-XX.html
 
 List of available files:
 ------------------------
 
-File name                                         | Name | Description
-------------------------------------------------- | ---- | ------------------------------------------------------------------
-[](cxidb.org/data/XX/cxidb_XX_hits.tar.gz)        | HITS | Diffraction data processed with *Cheetah* and saved as CXI files.
-[](cxidb.org/data/XX/cxidb_XX_background.tar.gz() | BKGR | Background data processed with *Cheetah* and saved as CXI files.
-[](cxidb.org/data/XX/cxidb_XX_metadata.tar.gz()   | META | Auxiliary files used in *Cheetah* and/or other processing scripts.
+File name                                           | Name | Description
+--------------------------------------------------- | ---- | ------------------------------------------------------------------
+http://cxidb.org/data/XX/cxidb_XX_hits.tar.gz       | HITS | Diffraction hits saved as CXI files.
+http://cxidb.org/data/XX/cxidb_XX_background.tar.gz | BKGR | Diffraction background saved as CXI files.
+http://cxidb.org/data/XX/cxidb_XX_metadata.tar.gz   | META | Auxiliary files.
 
 Inspecting CXI files
 --------------------
 The easiest way to inspect CXI files is to use the viewing tool Owl 
-([http://github.com/FXIhub/owl](http://github.com/FXIhub/owl)), but any inspection tool for HDF5 files can be used.
+(http://github.com/FXIhub/owl](http://github.com/FXIhub/owl), but any inspection tool for HDF5 files can be used.
 
 Requirements
 ------------
