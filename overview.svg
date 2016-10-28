@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="overview.svg">
+   sodipodi:docname="overview.svg"
+   inkscape:export-filename="/Users/benedikt/phd-project/documentation/manuscripts/omrv-paper/code/overview.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
   <defs
      id="defs4">
     <marker
@@ -1327,7 +1330,7 @@
          id="tspan7677"
          x="499.2305"
          y="194.28711"
-         style="font-size:17.5px;fill:#29839f;fill-opacity:1">back/gain/results.h5</tspan></text>
+         style="font-size:17.5px;fill:#29839f;fill-opacity:1">back/gain/fitting_results.h5</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text7679"
@@ -1375,7 +1378,7 @@
          y="283.37823"
          x="500.41824"
          id="tspan7693"
-         sodipodi:role="line">front/gain/results.h5</tspan></text>
+         sodipodi:role="line">front/gain/fitting_results.h5</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:17.5px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#29839f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
