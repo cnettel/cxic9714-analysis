@@ -39,3 +39,5 @@ ________________________________________________
 The following sections provide a detailed description of the individual data analysis steps performed for this work. The names **HITS**, **BKGR** and **META** are used as reference to the data files which are available for download using the links above. The entire processing pipeline for this experiment looks like this:
 
 ![Overview](overview.png?raw=true)
+
+### 1. Dark calibration
