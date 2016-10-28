@@ -41,3 +41,26 @@ The following sections provide a detailed description of the individual data ana
 ![Overview](overview.png?raw=true)
 
 ### 1. Dark calibration
+All raw data frames from run 63 have been averaged (using *Cheetah*) and saved in `META/back/darkcal.h5` and `META/front/darkcal.h5` for the back and front detector respectively. 
+
+### 2. Detector characterization
+All dark calibrated and common-mode corrected data frames from the runs 163-214 have been histogrammed (per-pixel) with *Cheetah* and saved in `META/back/histograms/\*histogram.h5` and `META/front/histograms/\*histogram.h5`. All individual histograms are merged together using
+```
+scripts/merge_histograms.py META/back/histograms/r0163-histogram.h5 META/back/histograms/r0*-histogram.h5 --cm -o META/back/
+scripts/merge_histograms.py META/front/histograms/r0163-histogram.h5 META/front/histograms/r0*-histogram.h5 --cm -o META/front/
+```
+and saved in `META/back/merged_histogram.h5` and `META/front/merged/merged_histogram.h5`.
+
+Fitting Gaussians to each histogram by using
+```
+scripts/fit_histograms.py fit META/back/merged_histogram.h5 -o META/back/gain/
+scripts/fit_histograms.py fit META/front/merged_histogram.h5 -o META/front/gain/
+```
+generates per-pixel fitting results which are saved in `META/back/fitting_results.h5` and `META/front/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
+```
+scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/
+scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/
+```
+which saves gain/noise maps into `META/back/gainmap.h5`/`META/back/bg_sigmamap.h5` and `META/front/gainmap.h5`/`META/front/bg_sigmamap.h5` respectively. 
+
+The outcome of this characterization is summarized in this notebook: [Detector charachterization (Figure 3)](https://github.com/daurer/omrv-analysis/blob/master/ipynb/fig03_detector.ipynb).
