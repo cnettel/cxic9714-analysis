@@ -63,4 +63,12 @@ scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/
 ```
 which saves gain/noise maps into `META/back/gainmap.h5`/`META/back/bg_sigmamap.h5` and `META/front/gainmap.h5`/`META/front/bg_sigmamap.h5` respectively. 
 
-The outcome of this characterization is summarized in this notebook: [Detector charachterization (Figure 3)](https://github.com/daurer/omrv-analysis/blob/master/ipynb/fig03_detector.ipynb).
+The outcome of this detector characterization is summarized in this notebook: [Detector charachterization (Figure 3)](./ipynb/fig03_detector.ipynb).
+
+### 3. Background characterization
+Two background runs, the first during buffer injection (run 175) and the second with no injection (run 199) have been processed with **Cheetah** (using dark and common-mode correction) as described in `BKGR/cheetah.ini` and saved in `BKGR/cxic9714-r0175.cxi` and `META/cxic9714-r0199.cxi`. Using 
+```
+scripts/background_buffer.py
+scripts/background_beamline.py
+```
+a statistical analysis of the background frames is performed and results are saved in `META/background_buffer_stats.h5` and `META/background_beamline_stats.h5`. The outcome of this background characterization is summarized in this notebook: [Background characterization (Figure 9)](./ipynb/fig09_background.ipynb). 
