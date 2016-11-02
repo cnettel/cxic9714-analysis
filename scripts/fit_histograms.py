@@ -13,8 +13,11 @@ import scipy as sp
 import math
 import h5py, os, sys, time, argparse, logging, warnings
 
+# Path to current directory
+curdir = os.path.dirname(os.path.abspath(__file__)) + "/"
+
 # Import modules from src directory
-sys.path.append("../src")
+sys.path.append(curdir + "../src")
 import plotting
 from fastloop import FastLoop
 from fit import fit_photon_histograms

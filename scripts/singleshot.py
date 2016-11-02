@@ -30,7 +30,7 @@ import cspad
 # Data files
 signal_filename  = HITS + "cxic9714-r0182.cxi"
 back_sigma_filename     = META + "back/gain/bg_sigmamap.h5"
-front_sigma_filename    = META + "front/gain/bg_sigmamap.h5"
+front_sigma_filename    = META + "front/gain/bg_sigmamap.h5" 
 back_geometry_filename  = META + "back/back_geometry.h5"
 front_geometry_filename = META + "front/front_geometry.h5"
 front_mask_filename     = META + "front/masks/front_mask.h5"
