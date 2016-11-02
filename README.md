@@ -95,7 +95,7 @@ Using the tagging option of [*Owl*](http://github.com/FXIhub/owl) (&#8984; + G),
 
 This classification analysis is performed on all given CXI files. The fitting results are saved under the entry `entry_1/image_1/model`, the tags are saved in `entry_1/image_1/tags`.
 
-### 6. Extract selected diffraction pattern and results
+### 6. Extract selected diffraction patterns and results
 Using `scripts/results.py` with the `--selection` flag
 ```
 scripts/results.py HITS/*.cxi -o META/ --selection
