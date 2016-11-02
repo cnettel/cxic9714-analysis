@@ -81,9 +81,18 @@ For all sample runs between run 163 and 211, *Cheetah* was used to find diffract
 ### 5. Classification based on size and intensity
 Using the sphere-model option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + M), diffraction from a homogeneous sphere has been fitted to all low-resolution diffraction patterns (back detector) using the following recipe:
 
-1. Specify model properties (5.5 keV photon energy, material density of poliovirus,, 2.4 m detector distance,  95 % detector quantum efficiency, 110e-6 m detector pixelsize)
-2. Find center position using the 
+1. Specify model properties (5.5 keV photon energy, material density of poliovirus,, 2.4 m detector distance,  95 % detector quantum efficiency, 110e-6 m detector pixelsize),
+2. Find center position using the "blurred" method from the libspimage module [\_spimage_find_center.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_find_center.py),
+3. Estimate the particle size using the "pearson" method for diameter fitting from the libspimage module [\_spimage_sphere_model.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_sphere_model.py),
+4. Estimate the intensity using the "photons" method for intensity fitting from the libspimage module [\_spimage_sphere_model.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_sphere_model.py) and
+5. Refine all estimates (center position, particle size and intensity) using the `fit_full_sphere_model` method from the libspimage module [\_spimage_sphere_model.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_sphere_model.py)
 
+resulting in low-resolution sphere-fits looking like this:
 ![Owl sizing](owl_sizing.png?raw=true)
 
+Using the tagging option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + G), images where the sphere-fitting failed are marked (filled red boxes):
 ![Owl tagging](owl_tagging.png?raw=true)
+
+This classification analysis is performed on all given CXI files. The fitting results are saved under the entry `entry_1/image_1/model`, the tags are saved in `entry_1/image_1/tags`.
+
+### 6. 
