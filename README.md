@@ -58,8 +58,8 @@ scripts/fit_histograms.py fit META/front/merged_histogram.h5 -o META/front/gain/
 ```
 generates per-pixel fitting results which are saved in `META/back/gain/fitting_results.h5` and `META/front/gain/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
 ```
-scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/gain/
-scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/gain/
+scripts/fit_histograms.py generate META/back/gain/fitting_results.h5 -o META/back/gain/
+scripts/fit_histograms.py generate META/front/gain/fitting_results.h5 -o META/front/gain/
 ```
 which saves gain/noise maps into `META/back/gain/gainmap.h5`/`META/back/gain/bg_sigmamap.h5` and `META/front/gain/gainmap.h5`/`META/front/gain/bg_sigmamap.h5` respectively. 
 
@@ -74,12 +74,12 @@ scripts/background_beamline.py -o META/
 a statistical analysis of the background frames is performed and results are saved in `META/background_buffer_stats.h5` and `META/background_beamline_stats.h5`. The outcome of this background characterization is summarized in this notebook: [Background characterization (Figure 9)](./ipynb/fig09_background.ipynb). 
 
 ### 4. Hit-finding 
-For all sample runs between run 163 and 211, *Cheetah* was used to find diffraction hits based on a lit-pixel counter applied to dark and common-mode corrected back detector images (see `HITS/cheetah.ini` for configuration details). For all hit events, assembled images of both detectors (back and front) together with auxilliary data (injector positions, photon energies, pulse energies, ...) are saved in `HITS/cxic9714-r0XXX.cxi`. Using the visualisation tool [**Owl**](http://github.com/FXIhub/owl), it is simple to inspect the content of these CXI files:
+For all sample runs between run 163 and 211, *Cheetah* was used to find diffraction hits based on a lit-pixel counter applied to dark and common-mode corrected back detector images (see `HITS/cheetah.ini` for configuration details). For all hit events, assembled images of both detectors (back and front) together with auxilliary data (injector positions, photon energies, pulse energies, ...) are saved in `HITS/cxic9714-r0XXX.cxi`. Using the visualisation tool [*Owl*](http://github.com/FXIhub/owl), it is simple to inspect the content of these CXI files:
 
 ![Owl inspect](owl_inspect.png?raw=true)
 
 ### 5. Classification based on size and intensity
-Using the sphere-model option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + M), diffraction from a homogeneous sphere has been fitted to all low-resolution diffraction patterns (back detector) using the following recipe:
+Using the sphere-model option of [*Owl*](http://github.com/FXIhub/owl) (&#8984; + M), diffraction from a homogeneous sphere has been fitted to all low-resolution diffraction patterns (back detector) using the following recipe:
 
 1. Specify model properties (5.5 keV photon energy, material density of poliovirus,, 2.4 m detector distance,  95 % detector quantum efficiency, 110e-6 m detector pixelsize),
 2. Find center position using the "blurred" method from the libspimage module [\_spimage_find_center.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_find_center.py),
@@ -90,7 +90,7 @@ Using the sphere-model option of [**Owl**](http://github.com/FXIhub/owl) (&#8984
 resulting in low-resolution sphere-fits looking like this:
 ![Owl sizing](owl_sizing.png?raw=true)
 
-Using the tagging option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + G), images where the sphere-fitting failed are marked (filled red boxes):
+Using the tagging option of [*Owl*](http://github.com/FXIhub/owl) (&#8984; + G), images where the sphere-fitting failed are marked (filled red boxes):
 ![Owl tagging](owl_tagging.png?raw=true)
 
 This classification analysis is performed on all given CXI files. The fitting results are saved under the entry `entry_1/image_1/model`, the tags are saved in `entry_1/image_1/tags`.
@@ -108,4 +108,12 @@ scripts/results.py HITS/*.cxi --exclude fail --poszmin -8.5 --poszmax -8.4 -o HI
 ```
 size, intensity and center position estimates are saved in `META/results.h5` after excluding failed classifications and selecting for a fixed injector position (along the X-ray beam axis). The outcome of this analysis is summarized in the notebooks: [Size vs. intensity (Figure 5)](./ipynb/fig05_size_and_intensity.ipynb), [Beamprofile (Figure 7)](./ipynb/fig07_beamprofile.ipynb) and [Center distribution (Figure 8)](./ipynb/fig08_center_distribution.ipynb).
 
+### 7. Single-shot diffraction pattern
+
+
+
+### 8. Validation of sphere-fitting
+For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/sphere_simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb)
+
+### 9. Sample characterization
 
