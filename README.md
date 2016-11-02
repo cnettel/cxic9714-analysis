@@ -122,7 +122,7 @@ scripts/phasing.py -o META
 with the result of this reconstruction beeing saved in `META/phasing.h5` and summarized in the notebook: [Phasing of single diffraction pattern (Fig. 11)](./ipynb/fig11_phasing.ipynb).
 
 ### 8. Validation of sphere-fitting
-For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/sphere_simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb)
+For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/sphere_simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb).
 
 ### 9. Sample characterization
 Using the SEM image provided in `META/prep/omrv.tif` and measurements of the particle size saved in `META/size.txt`, a summary of the sample preparation is shown in the notebook: [Sample characterization (Figure 6)](./ipynb/fig06_sample).
