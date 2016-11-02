@@ -113,7 +113,7 @@ size, intensity and center position estimates are saved in `META/results.h5` aft
 
 
 ### 8. Validation of sphere-fitting
-For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb)
+For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/sphere_simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb)
 
 ### 9. Sample characterization
 
