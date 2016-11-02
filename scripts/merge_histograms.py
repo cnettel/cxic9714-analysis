@@ -78,7 +78,7 @@ def merge_histograms(args):
 parser = argparse.ArgumentParser(prog='merge_histograms.py', description='A script merging pixel histograms.')
 parser.add_argument('origfile', metavar='FILE', type=str, help='A histogram file (from cheetah histogram module)')
 parser.add_argument('mergefiles', metavar='FILES', type=str, nargs='+', help='A bunch of histogram files (from cheetah histogram module)')
-parser.add_argument('--cm', metavar='BOOL', type=bool, default=False, help='Common mode correction befor merging')
+parser.add_argument('--cm', action='store_true', help='Common mode correction befor merging')
 parser.add_argument('-o', metavar='PATH', type=str, default='merged_histogram.h5', help='Output path to store merge histogram')
 parser.add_argument('-c', metavar='INT', type=int, default=10, help='Cutoff given in ADUs right of the histograms origin (for estimate of common mode)')
 parser.set_defaults(func=merge_histograms)

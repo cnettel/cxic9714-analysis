@@ -12,8 +12,12 @@ import numpy as np
 import scipy as sp
 import math
 import h5py, os, sys, time, argparse, logging, warnings
-import tools as pyCXI
-# ---------------------------------------
+
+# Import modules from src directory
+sys.path.append("../src")
+import plotting
+from fastloop import FastLoop
+from fit import fit_photon_histograms
 
 def fitting_mode(args):
 
@@ -74,7 +78,7 @@ def fitting_mode(args):
     # ---------------------------
     infile = args.t + '/tmpin.h5'
     outfile = args.t + '/tmpout.h5'
-    fastloop = pyCXI.processing.FastLoop(infile, outfile, args.c, NXY, pyCXI.analysis.fit_photon_histograms, 1000, Hbins)
+    fastloop = FastLoop(infile, outfile, args.c, NXY, fit_photon_histograms, 1000, Hbins)
     fastloop.start()
     fastloop.write()
     os.remove(args.t + '/tmpin.h5')
@@ -89,7 +93,7 @@ def fitting_mode(args):
     # --------
     # CLEAN UP
     # ----------------------------
-    os.system('cp ' + args.t + '/tmpout.h5 ' +  args.o + '/fitting_results_%s.h5' %timestamp)
+    os.system('cp ' + args.t + '/tmpout.h5 ' +  args.o + '/fitting_results.h5')
     os.remove(args.t + '/tmpout.h5')
     print 'Running a fitting analysis on pixel histograms, finished at: ', time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
 
@@ -139,7 +143,7 @@ def compare_mode(args):
     # -------------
     # PLOT GAIN MAP
     # ------------------------------------------------------
-    plot = pyCXI.plotting.Plot(colorbar=True)
+    plot = plotting.Plot(colorbar=True)
     plot.xlabel = 'x (total width = %d pixel)' %gain.shape[1]
     plot.ylabel = 'y (total height = %d pixel)' %gain.shape[0]
     plot.title_label = '%s - gain' %(args.fitfilename)
@@ -189,7 +193,7 @@ def compare_mode(args):
         split_params = [0.5*0.08*photon_amp[y,x]/(int(photon_offset[y,x]+1)-5), i, bg_sigma[y,x]]
         sfit2 += gaussian_model(Hbins, split_params)
     print photon_params, bg_params
-    plot = pyCXI.plotting.Plot(save_png=True)
+    plot = plotting.Plot(save_png=True)
     plot.axes[0].plot((Hbins-bg_offset[y,x])/gain[y,x], H, 'r-', label='Data')
     plot.axes[0].plot((Hbins-bg_offset[y,x])/gain[y,x], bfit, 'b-', label='Gaussian fit to 0-ph peak')
     plot.axes[0].plot((Hbins-bg_offset[y,x])/gain[y,x], pfit, 'g-', label='Gaussian fit to 1-ph peak')
@@ -230,7 +234,7 @@ def compare_mode(args):
     #print 'Optimal threshold: ', bestth[y,x]
     #print 'Max. photon detectability rate: ', pdrmap[y,x]
 
-    plot = pyCXI.plotting.Plot(save_pdf=True)
+    plot = plotting.Plot(save_pdf=True)
     plot.axes[0].plot(Hbins, H, 'r-', label='Data')
     plot.axes[0].plot(Hbins, bfit, 'b-', label='Gaussian fit to 0-ph peak')
     plot.axes[0].plot(Hbins, pfit, 'g-', label='Gaussian fit to 1-ph peak')
@@ -322,12 +326,12 @@ def generating_mode(args):
     # -------------------------------------
     # SHOW HISTOGRAMS OF FITTING PARAMETERS
     # -------------------------------------
-    if args.s and pyCXI.plotting.plotting_is_enabled:
+    if args.s:# and plotting.plotting_is_enabled:
         params = [photon_amp[~mask], photon_sigma[~mask], bg_amp[~mask],bg_sigma[~mask], gain[~mask]]
         titles = ['Histogram of %s values' %p for p in ['photon amp', 'photon sigma', 'bg amp', 'bg sigma', 'gain']]
         for p in params:
             print p.min(), p.max()
-        pyCXI.plotting.plot_fitting_parameter_histograms(params, titles, bins=args.b)
+        plotting.plot_fitting_parameter_histograms(params, titles, bins=args.b)
 
     # ---------------------
     # PHOTON DETECTION RATE
