@@ -46,8 +46,8 @@ All raw data frames from run 63 have been averaged (using *Cheetah*) and saved i
 ### 2. Detector characterization
 All dark calibrated and common-mode corrected data frames from the runs 163-214 have been histogrammed (per-pixel) with *Cheetah* and saved in `META/back/histograms/\*histogram.h5` and `META/front/histograms/\*histogram.h5`. All individual histograms are merged together using
 ```
-scripts/merge_histograms.py META/back/histograms/r0163-histogram.h5 META/back/histograms/r0*-histogram.h5 --cm -o META/back/
-scripts/merge_histograms.py META/front/histograms/r0163-histogram.h5 META/front/histograms/r0*-histogram.h5 --cm -o META/front/
+scripts/merge_histograms.py META/back/histograms/r0163-histogram.h5 META/back/histograms/r0*-histogram.h5 --cm -o META/back/merged_histogram.h5
+scripts/merge_histograms.py META/front/histograms/r0163-histogram.h5 META/front/histograms/r0*-histogram.h5 --cm -o META/front/merged_histogram.h5
 ```
 and saved in `META/back/merged_histogram.h5` and `META/front/merged/merged_histogram.h5`.
 
@@ -58,8 +58,8 @@ scripts/fit_histograms.py fit META/front/merged_histogram.h5 -o META/front/gain/
 ```
 generates per-pixel fitting results which are saved in `META/back/fitting_results.h5` and `META/front/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
 ```
-scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/merged_histogram.h5
-scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/merged_histogram.h5
+scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/
+scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/
 ```
 which saves gain/noise maps into `META/back/gainmap.h5`/`META/back/bg_sigmamap.h5` and `META/front/gainmap.h5`/`META/front/bg_sigmamap.h5` respectively. 
 
