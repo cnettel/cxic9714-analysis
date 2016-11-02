@@ -58,8 +58,8 @@ scripts/fit_histograms.py fit META/front/merged_histogram.h5 -o META/front/gain/
 ```
 generates per-pixel fitting results which are saved in `META/back/gain/fitting_results.h5` and `META/front/gain/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
 ```
-scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/gain/
-scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/gain/
+scripts/fit_histograms.py generate META/back/gain/fitting_results.h5 -o META/back/gain/
+scripts/fit_histograms.py generate META/front/gain/fitting_results.h5 -o META/front/gain/
 ```
 which saves gain/noise maps into `META/back/gain/gainmap.h5`/`META/back/gain/bg_sigmamap.h5` and `META/front/gain/gainmap.h5`/`META/front/gain/bg_sigmamap.h5` respectively. 
 
