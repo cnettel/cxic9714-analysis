@@ -109,11 +109,20 @@ scripts/results.py HITS/*.cxi --exclude fail --poszmin -8.5 --poszmax -8.4 -o HI
 size, intensity and center position estimates are saved in `META/results.h5` after excluding failed classifications and selecting for a fixed injector position (along the X-ray beam axis). The outcome of this analysis is summarized in the notebooks: [Size vs. intensity (Figure 5)](./ipynb/fig05_size_and_intensity.ipynb), [Beamprofile (Figure 7)](./ipynb/fig07_beamprofile.ipynb) and [Center distribution (Figure 8)](./ipynb/fig08_center_distribution.ipynb).
 
 ### 7. Single-shot diffraction pattern
+Using `scripts/singleshot.py` as single-shot event with corresponding particle size of 42 nm is extracted
+```
+scripts/singleshot.py -o META/
+```
+and its back/front detector images as well as an assembled image are saved in `META/single-short_back.h5`, `META/single-short_front.h5` and `META/single-short_assembled.h5` respectively. These images are used for studying signal vs. background levels as function of resolution, the outcome is summarized in the notebook: [Signal vs. Resolution (Figure 10)](./ipynb/fig10_signal_resolution.ipynb).
 
-
+In addition, the assmebled diffraction pattern `META/single-shot_assembled.h5` is used for 2D phase retrieval
+```
+scripts/phasing.py -o META
+```
+with the result of this reconstruction beeing saved in `META/phasing.h5` and summarized in the notebook: [Phasing of single diffraction pattern (Fig. 11)](./ipynb/fig11_phasing.ipynb).
 
 ### 8. Validation of sphere-fitting
-For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/sphere_simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb)
+For a validation of the sphere-fitting approach to estimate particle sizes and intensities, the simulation tool [*Condor*](http://github.com/FXIhub/condor) has been used to simulate spheres with different particle sizes and intensities and the same classification procedure as described in **5.** has been applied. The results are saved in `META/sphere_simulation.h5` and summarized in the notebook: [Validation of sphere fitting (Figure 2)](./ipynb/fig02_validation.ipynb).
 
 ### 9. Sample characterization
-
+Using the SEM image provided in `META/prep/omrv.tif` and measurements of the particle size saved in `META/size.txt`, a summary of the sample preparation is shown in the notebook: [Sample characterization (Figure 6)](./ipynb/fig06_sample).
