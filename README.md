@@ -100,7 +100,7 @@ Using `scripts/results.py` with the `--selection` flag
 ```
 scripts/results.py HITS/*.cxi -o META/ --selection
 ```
-a selection of N assembled diffraction patterns is saved in `META/selection.h5` and displayed in this notebook: [Selection of difraction patterns (Figure 4)](./ipynb/fig04_selection.ipynb)
+a selection of N assembled diffraction patterns is saved in `META/selection.h5` and displayed in this notebook: [Selection of difraction patterns (Figure 4)](./ipynb/fig04_selection.ipynb).
 
 Using `scripts/results.py` with the `--results` flag
 ```
