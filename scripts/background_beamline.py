@@ -11,18 +11,22 @@ import numpy as np
 import scipy as sp
 import h5py, os, sys, time, argparse, logging
 
+# Path to current directory
+curdir = os.path.dirname(os.path.abspath(__file__)) + "/"
+
 # Import modules from src directory
-sys.path.append("../src")
+sys.path.append(curdir + "../src")
 import cspad
 
 # Data files
-background_filename  = "../data/background/cxic9714-r0199.cxi"
-back_sigma_filename  = "../analysis/detector/back/signal/bg_sigmamap_tmp.h5"
-front_sigma_filename = "../analysis/detector/front/signal/bg_sigmamap_tmp.h5"
-back_geometry_filename = "../analysis/detector/back/back_geometry.h5"
-front_geometry_filename = "../analysis/detector/front/front_geometry.h5"
-#back_mask_filename  = "../analysis/masks/back_mask_halo_reduce.h5"
-#front_mask_filename = "../analysis/masks/front_mask.h5"
+META = curdir + "../meta/"
+BKGR = curdir + "../background/"
+
+background_filename  = BKGR + "cxic9714-r0199.cxi"
+back_sigma_filename  = META + "back/gain/bg_sigmamap.h5"
+front_sigma_filename = META + "front/gain/bg_sigmamap.h5"
+back_geometry_filename = META + "back/back_geometry.h5"
+front_geometry_filename = META + "front/front_geometry.h5"
 
 # CXI keys
 BACK_DATA  = 'entry_1/image_1/data'
