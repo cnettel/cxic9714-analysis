@@ -56,20 +56,20 @@ Fitting Gaussians to each histogram by using
 scripts/fit_histograms.py fit META/back/merged_histogram.h5 -o META/back/gain/
 scripts/fit_histograms.py fit META/front/merged_histogram.h5 -o META/front/gain/
 ```
-generates per-pixel fitting results which are saved in `META/back/fitting_results.h5` and `META/front/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
+generates per-pixel fitting results which are saved in `META/back/gain/fitting_results.h5` and `META/front/gain/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
 ```
-scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/
-scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/
+scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/gain/
+scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/gain/
 ```
-which saves gain/noise maps into `META/back/gainmap.h5`/`META/back/bg_sigmamap.h5` and `META/front/gainmap.h5`/`META/front/bg_sigmamap.h5` respectively. 
+which saves gain/noise maps into `META/back/gain/gainmap.h5`/`META/back/gain/bg_sigmamap.h5` and `META/front/gain/gainmap.h5`/`META/front/gain/bg_sigmamap.h5` respectively. 
 
 The outcome of this detector characterization is summarized in this notebook: [Detector charachterization (Figure 3)](./ipynb/fig03_detector.ipynb).
 
 ### 3. Background characterization
 Two background runs, the first during buffer injection (run 175) and the second with no injection (run 199) have been processed with *Cheetah* (using dark and common-mode correction) as described in `BKGR/cheetah.ini` and saved in `BKGR/cxic9714-r0175.cxi` and `META/cxic9714-r0199.cxi`. Using 
 ```
-scripts/background_buffer.py
-scripts/background_beamline.py
+scripts/background_buffer.py -o META/
+scripts/background_beamline.py -o META/
 ```
 a statistical analysis of the background frames is performed and results are saved in `META/background_buffer_stats.h5` and `META/background_beamline_stats.h5`. The outcome of this background characterization is summarized in this notebook: [Background characterization (Figure 9)](./ipynb/fig09_background.ipynb). 
 
