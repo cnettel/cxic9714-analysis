@@ -12,17 +12,28 @@ import scipy as sp
 import scipy.ndimage as ndimage
 import h5py, os, sys, time, argparse, logging
 
+# Path to current directory
+curdir = os.path.dirname(os.path.abspath(__file__)) + "/"
+
+# Import modules from src directory
+sys.path.append(curdir + "../src")
+import cspad
+
+# Data files
+META = curdir + "../meta/"
+HITS = curdir + "../hits/"
+
 # Import modules from src directory
 sys.path.append("../src")
 import cspad
 
 # Data files
-signal_filename  = "../data/r0182_20141209_1845/cxic9714-r0182.cxi"
-back_sigma_filename  = "../analysis/detector/back/signal/bg_sigmamap_tmp.h5"
-front_sigma_filename = "../analysis/detector/front/signal/bg_sigmamap_tmp.h5"
-back_geometry_filename = "../analysis/detector/back/back_geometry.h5"
-front_geometry_filename = "../analysis/detector/front/front_geometry.h5"
-front_mask_filename = "../analysis/masks/front_mask.h5"
+signal_filename  = HITS + "cxic9714-r0182.cxi"
+back_sigma_filename     = META + "back/gain/bg_sigmamap.h5"
+front_sigma_filename    = META + "front/gain/bg_sigmamap.h5"
+back_geometry_filename  = META + "back/back_geometry.h5"
+front_geometry_filename = META + "front/front_geometry.h5"
+front_mask_filename     = META + "front/masks/front_mask.h5"
 
 # CXI keys
 BACK_DATA  = 'entry_1/image_1/data'
@@ -81,10 +92,10 @@ print "and center position: (x,y) = ", offcenterx, offcentery
 print "and pulse energy (GMD): %.2f mJ", gmd
 
 # Save back and front independently
-with h5py.File(args.o + '/signal_back.h5', 'w') as f:
+with h5py.File(args.o + '/single-shot_back.h5', 'w') as f:
     f['data/data'] = back
     f['data/mask'] = backmask
-with h5py.File(args.o + '/signal_front.h5', 'w') as f:
+with h5py.File(args.o + '/single-shot_front.h5', 'w') as f:
     f['data/data'] = front
     f['data/mask'] = frontmask
 
@@ -124,7 +135,7 @@ assembled[fh/2 - bh/2 + offset_y:fh/2 + bh/2 + offset_y, fw/2 - bw/2 + offset_x:
 assembled_mask[fh/2 - bh/2 + offset_y:fh/2 + bh/2 + offset_y, fw/2 - bw/2 + offset_x:fw/2 + bw/2 + offset_x] = backtmp_mask
 
 # Save assembled
-with h5py.File(args.o + '/signal_assembled.h5', 'w') as f:
+with h5py.File(args.o + '/single-shot_assembled.h5', 'w') as f:
     f['id'] = expid
     f['diameter'] = diameter
     f['intensity'] = intensity
