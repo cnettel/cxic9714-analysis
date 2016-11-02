@@ -12,8 +12,11 @@ import scipy as sp
 import scipy.ndimage as ndimage
 import h5py, os, sys, time, argparse, logging
 
+# Path to current directory
+curdir = os.path.dirname(os.path.abspath(__file__)) + "/"
+
 # Import modules from src directory
-sys.path.append("../src")
+sys.path.append(curdir + "../src")
 import cspad
 
 # Import module for phasing
@@ -26,7 +29,8 @@ pixelsize  = 110e-6 #[m]
 wavelength = 0.2262e-9 #[m]
 
 # Path to file with single strong hit
-filename_signal = "../analysis/signal/signal_assembled.h5"
+META = curdir + "../meta/"
+filename_signal = META + "single-shot_assembled.h5"
 
 # Parse arguments
 parser = argparse.ArgumentParser(prog='phasing.py', description='A script for doing phasing on a single hit.')
