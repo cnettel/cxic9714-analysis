@@ -95,4 +95,17 @@ Using the tagging option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + G
 
 This classification analysis is performed on all given CXI files. The fitting results are saved under the entry `entry_1/image_1/model`, the tags are saved in `entry_1/image_1/tags`.
 
-### 6. 
+### 6. Extract selected diffraction pattern and results
+Using `scripts/results.py` with the `--selection` flag
+```
+scripts/results.py HITS/*.cxi -o META/ --selection
+```
+a selection of N assembled diffraction patterns is saved in `META/selection.h5` and displayed in this notebook: [Selection of difraction patterns (Figure 4)](./ipynb/fig04_selection.ipynb).
+
+Using `scripts/results.py` with the `--results` flag
+```
+scripts/results.py HITS/*.cxi --exclude fail --poszmin -8.5 --poszmax -8.4 -o HITS/ --results
+```
+size, intensity and center position estimates are saved in `META/results.h5` after excluding failed classifications and selecting for a fixed injector position (along the X-ray beam axis). The outcome of this analysis is summarized in the notebooks: [Size vs. intensity (Figure 5)](./ipynb/fig05_size_and_intensity.ipynb), [Beamprofile (Figure 7)](./ipynb/fig07_beamprofile.ipynb) and [Center distribution (Figure 8)](./ipynb/fig08_center_distribution.ipynb).
+
+
