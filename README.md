@@ -46,8 +46,8 @@ All raw data frames from run 63 have been averaged (using *Cheetah*) and saved i
 ### 2. Detector characterization
 All dark calibrated and common-mode corrected data frames from the runs 163-214 have been histogrammed (per-pixel) with *Cheetah* and saved in `META/back/histograms/\*histogram.h5` and `META/front/histograms/\*histogram.h5`. All individual histograms are merged together using
 ```
-scripts/merge_histograms.py META/back/histograms/r0163-histogram.h5 META/back/histograms/r0*-histogram.h5 --cm -o META/back/
-scripts/merge_histograms.py META/front/histograms/r0163-histogram.h5 META/front/histograms/r0*-histogram.h5 --cm -o META/front/
+scripts/merge_histograms.py META/back/histograms/r0163-histogram.h5 META/back/histograms/r0*-histogram.h5 --cm -o META/back/merged_histogram.h5
+scripts/merge_histograms.py META/front/histograms/r0163-histogram.h5 META/front/histograms/r0*-histogram.h5 --cm -o META/front/merged_histogram.h5
 ```
 and saved in `META/back/merged_histogram.h5` and `META/front/merged/merged_histogram.h5`.
 
@@ -58,8 +58,8 @@ scripts/fit_histograms.py fit META/front/merged_histogram.h5 -o META/front/gain/
 ```
 generates per-pixel fitting results which are saved in `META/back/fitting_results.h5` and `META/front/fitting_results.h5`. Based on these numbers, per-pixel estimates for gain and noise can be generated using
 ```
-scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/merged_histogram.h5
-scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/merged_histogram.h5
+scripts/fit_histograms.py generate META/back/fitting_results.h5 -o META/back/
+scripts/fit_histograms.py generate META/front/fitting_results.h5 -o META/front/
 ```
 which saves gain/noise maps into `META/back/gainmap.h5`/`META/back/bg_sigmamap.h5` and `META/front/gainmap.h5`/`META/front/bg_sigmamap.h5` respectively. 
 
@@ -81,9 +81,18 @@ For all sample runs between run 163 and 211, *Cheetah* was used to find diffract
 ### 5. Classification based on size and intensity
 Using the sphere-model option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + M), diffraction from a homogeneous sphere has been fitted to all low-resolution diffraction patterns (back detector) using the following recipe:
 
-1. Specify model properties (5.5 keV photon energy, material density of poliovirus,, 2.4 m detector distance,  95 % detector quantum efficiency, 110e-6 m detector pixelsize)
-2. Find center position using the 
+1. Specify model properties (5.5 keV photon energy, material density of poliovirus,, 2.4 m detector distance,  95 % detector quantum efficiency, 110e-6 m detector pixelsize),
+2. Find center position using the "blurred" method from the libspimage module [\_spimage_find_center.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_find_center.py),
+3. Estimate the particle size using the "pearson" method for diameter fitting from the libspimage module [\_spimage_sphere_model.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_sphere_model.py),
+4. Estimate the intensity using the "photons" method for intensity fitting from the libspimage module [\_spimage_sphere_model.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_sphere_model.py) and
+5. Refine all estimates (center position, particle size and intensity) using the `fit_full_sphere_model` method from the libspimage module [\_spimage_sphere_model.py](https://github.com/FXIhub/libspimage/blob/master/src/_spimage_sphere_model.py)
 
+resulting in low-resolution sphere-fits looking like this:
 ![Owl sizing](owl_sizing.png?raw=true)
 
+Using the tagging option of [**Owl**](http://github.com/FXIhub/owl) (&#8984; + G), images where the sphere-fitting failed are marked (filled red boxes):
 ![Owl tagging](owl_tagging.png?raw=true)
+
+This classification analysis is performed on all given CXI files. The fitting results are saved under the entry `entry_1/image_1/model`, the tags are saved in `entry_1/image_1/tags`.
+
+### 6. 
