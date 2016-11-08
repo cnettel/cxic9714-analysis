@@ -84,7 +84,7 @@ front_mean = front_x / float(nframes)
 front_std  = np.sqrt((front_x2 / float(nframes)) - (front_mean**2))
 
 # Save results to file
-with h5py.File(args.o + '/background_xray_stats.h5', 'w') as f:
+with h5py.File(args.o + '/background_beamline_stats.h5', 'w') as f:
     f['back/mean']  = back_mean
     f['back/std']   = back_std
     f['front/mean'] = front_mean

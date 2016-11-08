@@ -63,7 +63,7 @@ niter_total = niter_raar + niter_hio + niter_er
 beta = 0.9
 support_size = 24.
 
-# Run phasing with 10000 individual reconstructions
+# Run phasing with 5000 individual reconstructions
 R = spimage.Reconstructor()
 R.set_intensities(intensities_cropped)
 R.set_mask(mask_cropped)
@@ -77,16 +77,13 @@ R.append_phasing_algorithm("hio", beta_init=beta, beta_final=beta, number_of_ite
 R.append_phasing_algorithm("er",  number_of_iterations=niter_er)
 
 # Nr. of reconstructions (N*M total)
-N = 100
+N = 50
 M = 100
 
 os.system('rm %s' %(args.output + '/phasing.h5'))
 for n in range(N):
     output = R.reconstruct_loop(M)
     print "Done Reconstructions: %d/%d" %((n+1)*M, N*M)
-    #import matplotlib.pyplot as plt
-    #plt.imshow(np.abs(output['real_space_final'][-1]))
-    #plt.show()
     with h5py.File(args.output + '/phasing.h5', 'a') as f:
         for k,v in output.iteritems():
             if isinstance(v,dict):
