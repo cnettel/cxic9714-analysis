@@ -9,9 +9,9 @@ http://cxidb.org/id-56.html
 ### List of available files: ###
 File name                                           | Name     | Description
 --------------------------------------------------- | -------- | ----------------------------------
-http://cxidb.org/data/XX/cxidb_56_hits.tar.gz       | **HITS** | Diffraction hits saved as CXI files.
-http://cxidb.org/data/XX/cxidb_56_background.tar.gz | **BKGR** | Diffraction background saved as CXI files.
-http://cxidb.org/data/XX/cxidb_56_metadata.tar.gz   | **META** | Auxiliary files.
+http://cxidb.org/data/56/cxidb_56_hits.tar.gz       | **HITS** | Diffraction hits saved as CXI files.
+http://cxidb.org/data/56/cxidb_56_background.tar.gz | **BKGR** | Diffraction background saved as CXI files.
+http://cxidb.org/data/56/cxidb_56_metadata.tar.gz   | **META** | Auxiliary files.
 
 ### Inspecting CXI files ###
 The easiest way to inspect CXI files is to use the viewing tool Owl 
