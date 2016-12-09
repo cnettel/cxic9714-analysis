@@ -3,7 +3,7 @@ the Linac Coherent Light Source (LCLS) and is described in
 
 **Daurer B.J., Okamoto K., et al. Experimental strategies for imaging bioparticles with femtosecond hard X-ray pulses. Manuscript in preparation.**
 
-The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with ID XX and can be downloaded from here: 
+The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with ID 56 and can be downloaded from here: 
 http://cxidb.org/id-56.html
 
 ### List of available files: ###
