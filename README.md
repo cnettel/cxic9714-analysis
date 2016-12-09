@@ -1,17 +1,17 @@
 This repository provides a description of the data analysis tools used for a Flash X-ray Imaging (FXI) experiment which was performed at 
 the Linac Coherent Light Source (LCLS) and is described in 
 
-**Daurer B.J., Okamoto K., et al. TITLE. Manuscript in preparation.**
+**Daurer B.J., Okamoto K., et al. Experimental strategies for imaging bioparticles with femtosecond hard X-ray pulses. Manuscript in preparation.**
 
 The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with ID XX and can be downloaded from here: 
-http://cxidb.org/id-XX.html
+http://cxidb.org/id-56.html
 
 ### List of available files: ###
 File name                                           | Name     | Description
 --------------------------------------------------- | -------- | ----------------------------------
-http://cxidb.org/data/XX/cxidb_XX_hits.tar.gz       | **HITS** | Diffraction hits saved as CXI files.
-http://cxidb.org/data/XX/cxidb_XX_background.tar.gz | **BKGR** | Diffraction background saved as CXI files.
-http://cxidb.org/data/XX/cxidb_XX_metadata.tar.gz   | **META** | Auxiliary files.
+http://cxidb.org/data/XX/cxidb_56_hits.tar.gz       | **HITS** | Diffraction hits saved as CXI files.
+http://cxidb.org/data/XX/cxidb_56_background.tar.gz | **BKGR** | Diffraction background saved as CXI files.
+http://cxidb.org/data/XX/cxidb_56_metadata.tar.gz   | **META** | Auxiliary files.
 
 ### Inspecting CXI files ###
 The easiest way to inspect CXI files is to use the viewing tool Owl 
