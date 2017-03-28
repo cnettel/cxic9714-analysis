@@ -260,6 +260,7 @@ def extract_results(args):
             file["injector_posz"] = d.injectorPosition[:,2]
             file["injector_voltage"] = d.electrojetVoltage
             file["npeaks"] = d.npeaks
+            file["gmd"] = d.gmd
             
     # Save selection of assembled diffraction patterns to selection.h5
     if args.selection:
