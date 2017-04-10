@@ -30,7 +30,7 @@ In order to be able to run all the provided scripts and jupyter notebooks, the f
 * condor (http://github.com/FXIhub/condor)
 
 ### Contact information
-For questions about this repository and the data analysis tools, feel free to contact the author: 
+For questions about this repository and the data analysis tools, feel free to contact me: 
 * Benedikt Daurer (benedikt@xray.bmc.uu.se)
 
 ________________________________________________
