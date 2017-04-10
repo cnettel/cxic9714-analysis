@@ -1,7 +1,7 @@
 This repository provides a description of the data analysis tools used for a Flash X-ray Imaging (FXI) experiment which was performed at 
 the Linac Coherent Light Source (LCLS) and is described in 
 
-> Daurer B.J., Okamoto K., *et al.* Experimental strategies for imaging bioparticles with femtosecond hard X-ray pulses. *IUCrJ* **4**, 3 (2017).
+> Daurer B.J., Okamoto K., *et al.* Experimental strategies for imaging bioparticles with femtosecond hard X-ray pulses. *IUCrJ* **4**, 3 (2017). [https://doi.org/10.1107/S2052252517003591](https://doi.org/10.1107/S2052252517003591).
 
 The data has been deposited in the Coherent X-ray Imaging Data Base (CXIDB) with ID **56** and can be downloaded from here: 
 http://cxidb.org/id-56.html
