@@ -3,7 +3,8 @@
 A script for phasing a single diffraction pattern and calculate PRTF.
 
 Author:       Benedikt J. Daurer (benedikt@xray.bmc.uu.se)
-Last change:  August 21, 2016
+              Carl Nettelblad (carl.nettelblad@it.uu.se)
+Last change:  February 9, 2018
 """
 
 # Import other modules
@@ -15,22 +16,11 @@ import h5py, os, sys, time, argparse, logging
 # Path to current directory
 curdir = os.path.dirname(os.path.abspath(__file__)) + "/"
 
-# Import modules from src directory
-sys.path.append(curdir + "../src")
-import cspad
-
 # Import module for phasing
 import spimage
 
-# Configuration (Experiment)
-distance_back  = 2.4 #[m]
-distance_front = 0.497 #[m]
-pixelsize  = 110e-6 #[m]
-wavelength = 0.2262e-9 #[m]
-
 # Path to file with single strong hit
-META = curdir + "../meta/"
-filename_signal = META + "single-shot_assembled.h5"
+filename_signal = "invicosa64.mat"
 
 # Parse arguments
 parser = argparse.ArgumentParser(prog='phasing.py', description='A script for doing phasing on a single hit.')
@@ -39,21 +29,8 @@ args = parser.parse_args()
 
 # Loading the signal (assembled)
 with h5py.File(filename_signal, 'r') as f:
-    signal_data = np.rot90(f['data/data'][:], k=2)
-    signal_mask = ~np.rot90(f['data/mask'][:].astype(np.bool), k=2)  
-    signal_diameter = f['diameter'][...]
-    signal_intensity = f['intensity'][...]
-    signal_id = f['id'][...]
-
-# Downsampling
-downsampling = 4
-intensities, mask = spimage.downsample(signal_data, downsampling, mask=signal_mask, mode='integrate')
-
-# Cropping
-cropping = 154
-cx, cy = -2,-6
-intensities_cropped = intensities[cropping+cy:-cropping+cy-1,cropping+cx:-cropping+cx-1]
-mask_cropped = mask[cropping+cy:-cropping+cy-1,cropping+cx:-cropping+cx-1]
+    intensities = (f['v'][:], k=2)
+    mask = ((f['r'][:], k=2) >= 0).astype(np.bool)
 
 # Phasing parameters
 niter_raar = 0
@@ -65,8 +42,8 @@ support_size = 24.
 
 # Run phasing with 5000 individual reconstructions
 R = spimage.Reconstructor()
-R.set_intensities(intensities_cropped)
-R.set_mask(mask_cropped)
+R.set_intensities(intensities)
+R.set_mask(mask)
 R.set_number_of_iterations(niter_total)
 R.set_number_of_outputs_images(5)
 R.set_number_of_outputs_scores(200)
